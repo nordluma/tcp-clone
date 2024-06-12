@@ -29,8 +29,8 @@ fn main() -> io::Result<()> {
                     "{:?} -> {}b of protocol: {:?} {:?}",
                     src,
                     dst,
-                    proto,
-                    p.payload_len()
+                    p.payload_len(),
+                    proto
                 );
             }
             Err(e) => eprintln!("ignoring weird packet {:?}", e),
