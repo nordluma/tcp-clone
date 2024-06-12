@@ -26,7 +26,7 @@ fn main() -> io::Result<()> {
                 let proto = p.protocol();
 
                 eprintln!(
-                    "{:?} -> {}b of protocol: {:?} {:?}",
+                    "{:?} -> {} {:?}b of protocol: {:?}",
                     src,
                     dst,
                     p.payload_len(),
