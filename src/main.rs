@@ -24,14 +24,23 @@ fn main() -> io::Result<()> {
                 let src = p.source();
                 let dst = p.destination_addr();
                 let proto = p.protocol();
+                if proto.0 != 0x06 {
+                    // no tcp
+                    continue;
+                }
 
-                eprintln!(
-                    "{:?} -> {} {:?}b of protocol: {:?}",
-                    src,
-                    dst,
-                    p.payload_len(),
-                    proto
-                );
+                match etherparse::TcpHeaderSlice::from_slice(&buf[HEADER_LEN + p.slice().len()..]) {
+                    Ok(p) => {
+                        eprintln!(
+                            "{:?} -> {} {}b of tcp to port {}",
+                            src,
+                            dst,
+                            p.slice().len(),
+                            p.destination_port()
+                        );
+                    }
+                    Err(e) => eprintln!("ignoring weird tcp packet {:?}", e),
+                }
             }
             Err(e) => eprintln!("ignoring weird packet {:?}", e),
         }
