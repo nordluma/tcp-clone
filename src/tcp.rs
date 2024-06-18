@@ -11,7 +11,7 @@ impl State {
         data: &'a [u8],
     ) {
         eprintln!(
-            "{}:{} -> {}:{} {}b of tcp to port",
+            "{}:{} -> {}:{} {}b of tcp",
             ip_header.source_addr(),
             tcp_header.source_port(),
             ip_header.destination_addr(),
