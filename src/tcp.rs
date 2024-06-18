@@ -6,7 +6,7 @@ pub struct State {}
 impl State {
     pub fn on_packet<'a>(
         &mut self,
-        ip_header: Ipv4HeaderSlice,
+        ip_header: Ipv4HeaderSlice<'a>,
         tcp_header: TcpHeaderSlice<'a>,
         data: &'a [u8],
     ) {
